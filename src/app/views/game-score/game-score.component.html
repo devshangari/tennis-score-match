@@ -1,0 +1,38 @@
+<span class="score-setsWon">
+  {{players[0].setsWon}} - {{players[1].setsWon}}, 
+</span>
+<span class="score-currentSet" *ngIf="players[0].setsWon < 6 && players[1].setsWon < 6; else player_wins">
+  <span *ngIf="players[0].setScore === 0 && players[1].setScore === 0; else other_scores">
+    Love all
+  </span>
+</span>
+
+<ng-template #player_wins>
+  <span *ngIf="players[0].setsWon === 6">
+    Player 1 Wins!
+  </span>
+  <span *ngIf="players[1].setsWon === 6">
+    Player 2 Wins!
+  </span>
+</ng-template>
+
+<ng-template #other_scores>
+  <span *ngIf="players[0].setScore < scoreFourty">
+    {{players[0].verboseScore}} - {{players[1].verboseScore}}
+  </span>
+  <span *ngIf="players[0].setScore === scoreFourty && players[1].setScore === scoreFourty">
+    Deuce
+  </span>
+  <span *ngIf="players[0].setScore === scoreAdvantage">
+    Advantage, Player 1
+  </span>
+  <span *ngIf="players[1].setScore === scoreAdvantage">
+    Advantage, Player 2
+  </span>
+  <span *ngIf="players[0].setsWon === 6">
+    Player 1 Wins!
+  </span>
+  <span *ngIf="players[1].setsWon === 6">
+    Player 2 Wins!
+  </span>
+</ng-template>

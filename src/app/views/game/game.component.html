@@ -1,0 +1,44 @@
+ <!-- Set player information and start game -->
+ <section class="steps step-1" *ngIf="currentStep === 1">
+  <mat-card class="match-info">
+    <form [formGroup]="playersInfo" (ngSubmit)="startGame()">
+      <mat-card-header>
+        <mat-card-title>New Match</mat-card-title>
+        <mat-card-subtitle>Player Details</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field class="player-info">
+            <input matInput placeholder="Player 1" formControlName="player1" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="player-info">
+            <input matInput placeholder="Player 2" formControlName="player2" required>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!playersInfo.valid">Start Game</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
+<!-- Score the game -->
+<section class="steps step-2"  *ngIf="currentStep === 2">
+  <mat-card class="match-info">
+    <mat-card-header>
+      <mat-card-title>Current Match</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="match-title"><h2>{{players[0].name}} v/s {{players[1].name}}</h2></div>
+      <div class="score-buttons">
+        <button mat-fab (click)="addPoint$.next(players[0])">P1</button>
+        <button mat-fab (click)="addPoint$.next(players[1])">P2</button>
+      </div>
+      <div class="current-score">
+        <app-game-score [players]="players"></app-game-score>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
