@@ -1,12 +1,25 @@
 import { TestBed, async } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { GameComponent } from './views/game/game.component';
+import { GameScoreComponent } from './views/game-score/game-score.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        GameComponent,
+        GameScoreComponent
       ],
+      imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        SharedModule
+      ]
     }).compileComponents();
   }));
 
@@ -20,12 +33,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('tennis-score');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('tennis-score app is running!');
   });
 });

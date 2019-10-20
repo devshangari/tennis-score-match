@@ -51,43 +51,33 @@ export class Player {
     this.setScore++;
   }
 
+  public decrementCurrentScore() {
+    this.setScore--;
+  }
+
   public setCurrentScore(toScore?: Score) {
     if (toScore !== void 0) {
       this.setScore = toScore;
     }
   }
 
-  public decrementCurrentScore() {
-    this.setScore--;
-  }
-
-
   public get verboseScore(): string {
-    let score: string;
     switch (this.setScore) {
       case Score.LOVE:
-        score = 'Love';
-        break;
+        return 'Love';
       case Score.FIFTEEN:
-        score = '15';
-        break;
+        return '15';
       case Score.THIRTY:
-        score = '30';
-        break;
+        return '30';
       case Score.FOURTY:
-        score = '40';
-        break;
+        return '40';
       case Score.DEUCE:
-        score = 'Deuce';
-        break;
+        return 'Deuce';
       case Score.ADVANTAGE:
-        score = 'Advantage';
-        break;
+        return 'Advantage';
       case Score.WIN:
       case Score.ADVANTAGE_WIN:
-        score = 'Win';
-        break;
+        return 'Win';
     }
-    return score;
   }
 }

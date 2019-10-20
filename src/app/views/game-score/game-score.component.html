@@ -1,12 +1,14 @@
-<h4>Score:</h4>
-<span class="score-setsWon">
-  {{players[0].setsWon}} - {{players[1].setsWon}}, 
-</span>
-<span class="score-currentSet" *ngIf="players[0].setsWon < 6 && players[1].setsWon < 6; else player_wins">
-  <span *ngIf="players[0].setScore === 0 && players[1].setScore === 0; else other_scores">
-    Love all
+<div *ngIf="players"> <!-- Only render if players variable is initialized from input parameter -->
+  <h4>Score:</h4>
+  <span class="score-setsWon">
+    {{players[0].setsWon}} - {{players[1].setsWon}}, 
   </span>
-</span>
+  <span class="score-currentSet" *ngIf="players[0].setsWon < 6 && players[1].setsWon < 6; else player_wins">
+    <span *ngIf="players[0].setScore === 0 && players[1].setScore === 0; else other_scores">
+      Love all
+    </span>
+  </span>
+</div>
 
 <ng-template #player_wins>
   <span *ngIf="players[0].setsWon === 6">
