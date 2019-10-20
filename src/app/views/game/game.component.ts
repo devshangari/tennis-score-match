@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
 export class GameComponent implements OnInit {
   public currentStep = 1;
   public players: Player[];
-  public addPoint$ = new Subject<Player>();
+  public addPoint$ = new Subject<number>();
   constructor(private formBuilder: FormBuilder, private matchService: MatchService) { }
 
   playersInfo = this.formBuilder.group({
@@ -21,8 +21,9 @@ export class GameComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.addPoint$.subscribe((player: Player) => {
+    this.addPoint$.subscribe((playerIndex: number) => {
       // console.log(ev);
+      const player = this.players[playerIndex];
       this.matchService.addPointForPlayer(player);
     });
   }
@@ -30,6 +31,11 @@ export class GameComponent implements OnInit {
   startGame() {
     this.players = this.matchService.initGame(this.playersInfo.value.player1, this.playersInfo.value.player2);
     this.currentStep = 2; // show the match and begin scoring
+  }
+
+  startNewGame() {
+    this.matchService.resetGame();
+    this.currentStep = 1;
   }
 
 }

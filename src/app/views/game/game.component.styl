@@ -23,3 +23,26 @@
         width 100%
       .mat-card-header-text
         margin 0
+      .mat-card-actions
+        align-self flex-start
+  .playerName
+    font-size 1.3em
+    margin-bottom 10px
+  .point-button
+    margin-bottom 10px
+    &.points-1 // 15
+      margin-left 20%
+    &.points-2 // 30
+      margin-left 40%
+    &.points-3,&.points-5 // 40, deuce
+      margin-left 60%
+    &.points-6 // advantage
+      margin-left 80%
+    button[disabled] .score
+      display none
+    
+    ::ng-deep
+      .mat-button-wrapper
+        padding 8px 0
+      .player
+        line-height 20px

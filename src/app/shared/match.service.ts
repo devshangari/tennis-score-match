@@ -16,6 +16,11 @@ export class MatchService {
     return [this.playerOne, this.playerTwo];
   }
 
+  resetGame() {
+    this.playerOne = null;
+    this.playerTwo = null;
+  }
+
   addPointForPlayer(player: Player) {
     player.incrementCurrentScore();
     this.checkSetStatus(player);

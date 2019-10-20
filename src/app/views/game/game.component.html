@@ -28,17 +28,45 @@
 <section class="steps step-2"  *ngIf="currentStep === 2">
   <mat-card class="match-info">
     <mat-card-header>
-      <mat-card-title>Current Match</mat-card-title>
+      <mat-card-title>Current Match: <span>{{players[0].name}} v/s {{players[1].name}}</span></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="match-title"><h2>{{players[0].name}} v/s {{players[1].name}}</h2></div>
+      <div class="match-title"></div>
       <div class="score-buttons">
-        <button mat-fab (click)="addPoint$.next(players[0])">P1</button>
-        <button mat-fab (click)="addPoint$.next(players[1])">P2</button>
+        <div class="playerName">{{players[0].name}} ({{players[0].setsWon}})</div>
+        <div  class="point-button points-{{players[0].setScore}}">
+          <button mat-fab (click)="addPoint$.next(0)" [disabled]="players[0].setsWon === 6 || players[1].setsWon === 6">
+            <div class="player">
+              P1
+            </div>
+            <div class="score" *ngIf="players[1].setScore < 4 || players[1].setScore === 5">
+              <span *ngIf="players[0].setScore !== 6; else advantage;">{{players[0].verboseScore}}</span>
+              <!-- {{players[0].verboseScore}} -->
+            </div>
+          </button>
+        </div>
+        <div class="playerName">{{players[1].name}} ({{players[1].setsWon}})</div>
+        <div class="point-button points-{{players[1].setScore}}">
+          <button mat-fab (click)="addPoint$.next(1)" [disabled]="players[0].setsWon === 6 || players[1].setsWon === 6">
+            <div class="player">
+              P2
+            </div>
+            <div class="score" *ngIf="players[0].setScore < 4 || players[0].setScore === 5">
+              <span *ngIf="players[1].setScore !== 6; else advantage;">{{players[1].verboseScore}}</span>
+            </div>
+          </button>
+        </div>
       </div>
       <div class="current-score">
         <app-game-score [players]="players"></app-game-score>
       </div>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="startNewGame()">New Game</button>
+    </mat-card-actions>
   </mat-card>
 </section>
+
+<ng-template #advantage>
+  AD
+</ng-template>
