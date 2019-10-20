@@ -56,9 +56,7 @@ export class Player {
   }
 
   public setCurrentScore(toScore?: Score) {
-    if (toScore !== void 0) {
-      this.setScore = toScore;
-    }
+    this.setScore = toScore;
   }
 
   public get verboseScore(): string {

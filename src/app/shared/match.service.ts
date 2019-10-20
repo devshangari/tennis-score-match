@@ -26,7 +26,7 @@ export class MatchService {
     this.checkSetStatus(player);
   }
 
-  checkSetStatus(lastScorer: Player) {
+  private checkSetStatus(lastScorer: Player) {
     // set score to deuce if both are at Fourty
     if (lastScorer.setScore === Score.ADVANTAGE) {
       // check if we need to move both back to deuce
