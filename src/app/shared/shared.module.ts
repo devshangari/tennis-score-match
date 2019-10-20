@@ -10,13 +10,12 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatLabel } from '@angul
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatLabel
   ],
   exports: [
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatLabel
+    MatLabel,
   ]
 })
 export class SharedModule { }
